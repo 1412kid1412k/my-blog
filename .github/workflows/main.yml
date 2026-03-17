@@ -9,13 +9,13 @@ on:
 # 执行的任务
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest  # 使用最新的 Ubuntu 环境
+    runs-on: ubuntu-latest
     steps:
-      # 1. 检出代码（把仓库代码下载到 Actions 环境）
+      # 1. 检出代码
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # 2. 设置 Node.js 环境（Vite 需要 Node.js）
+      # 2. 设置 Node.js 环境
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
@@ -25,13 +25,13 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # 4. 打包项目（Vite 会生成 dist 目录，包含所有静态文件）
+      # 4. 打包项目
       - name: Build project
         run: npm run build
 
-      # 5. 部署到 GitHub Pages（使用官方 action）
+      # 5. 部署到 GitHub Pages（⚠️ 关键修正：移除 github_token 参数）
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: dist  # 要部署的文件夹（Vite 打包后默认输出到 dist）
-          branch: gh-pages  # 部署到 gh-pages 分支（GitHub Pages 会自动识别这个分支）
+          folder: dist
+          branch: gh-pages
