@@ -19,7 +19,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 20  # 推荐使用 Node.js 18（稳定版）
+          node-version: 24  
 
       # 3. 安装依赖
       - name: Install dependencies
